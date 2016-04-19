@@ -1,0 +1,31 @@
+@import "~normalize.css/normalize.css";
+@import "compass/css3";
+@import "compass/css3/flexbox";
+.flexContainer {
+    padding: 15px;
+    -js-display: flex;
+    @include display-flex(flex);
+    @include flex-wrap(wrap);
+    @include flex-direction(row);
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+}
+.btn {
+    color: #333;
+    background-color: #fff;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid rgba(0,0,0,0.3);
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    margin: 3px;
+    @include border-radius(4px);
+}
