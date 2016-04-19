@@ -36,12 +36,12 @@ class FileListItem extends Component
         e.preventDefault(); //清除預設事件
         let mousePositionX = (e.pageX || e.clientX + document.body.scrollLeft);
         let mousePositionY = (e.pageY || e.clientY + document.body.scrollTop);
-        let { fid, name } = this.props;
+        let { fid, name, dataUrl } = this.props;
         let { parentContextMenu } = this.props.methods;
         let fids = [fid];
         let itemData = {
-            file: { name, fids },
-            style: { show: true, top: mousePositionY, left: mousePositionX}
+            file: { name, fids , dataUrl: dataUrl},
+            style: { show: true, top: mousePositionY, left: mousePositionX }
         };
         parentContextMenu(itemData);
     }
