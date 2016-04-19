@@ -1,5 +1,5 @@
 {
-  "name": "react-redux",
+  "name": "react-photo",
   "version": "0.1.0",
   "description": "react-redux prototype project",
   "scripts": {
@@ -21,9 +21,9 @@
   "homepage": "",
   "dependencies": {
     "async": "^2.0.0-rc.3",
+    "attr-accept": "^1.0.3",
     "browser-info": "^0.4.0",
     "classnames": "^2.2.3",
-    "exif-js": "^2.1.1",
     "immutable": "^3.8.0",
     "lodash": "^4.11.1",
     "normalize.css": "^4.1.1",

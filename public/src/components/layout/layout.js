@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Dropzone from '../react-dropzone/index';
-import Exif from 'exif-js';
 import async from 'async';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import * as fileActions from '../../actions/file.js';
 import * as errActions from '../../actions/err.js';
-import { imageAndVideoArrayGet, exifAdd, imageThumbnail, videoThumbnail } from '../../utils/file';
+import { imageAndVideoArrayGet, imageThumbnail, videoThumbnail } from '../../utils/file';
 
 function mapStateToProps(state)
 {
@@ -72,14 +71,6 @@ class Layout extends Component
                     let { newFiles } = imageAndVideoArrayGet(files);
                     files = newFiles;
                     callback(null);
-                },
-
-                // add exif data
-                function(callback)
-                {
-                    exifAdd(files, () => {
-                        callback(null);
-                    });
                 },
 
                 // imageThumbnail

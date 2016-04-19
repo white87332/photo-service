@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import LazyLoad from 'react-lazyload';
-import { URL_FILE } from '../../constants/constants';
 import { on, off } from '../../utils/event';
 
 class FileListItem extends Component
@@ -41,7 +40,7 @@ class FileListItem extends Component
         let { parentContextMenu } = this.props.methods;
         let fids = [fid];
         let itemData = {
-            file: { name, fids, dataUrl: URL_FILE + fid },
+            file: { name, fids },
             style: { show: true, top: mousePositionY, left: mousePositionX}
         };
         parentContextMenu(itemData);
@@ -81,29 +80,14 @@ class FileListItem extends Component
     {
         let { fid, dataUrl, act, preview, mimetype } = this.props;
 
-        // image
-        dataUrl = (act === 'add')? dataUrl : dataUrl += "/thumbnail";
-
-        // vidoe
-        // let src = (act === 'add')? preview : URL_FILE + fid;
-        // if (this.props.mimetype.indexOf("video") !== -1)
-        // {
-        //     let video = <video className="video-js" poster={dataUrl} controls>
-        //                     <source src={src} type={mimetype} />
-        //                 </video>;
-        //     return video;
-        // }
-        // else
-        // {
-            return <LazyLoad>
-                        <img className="image" onError={this.imgError.bind(this)} ref="img" src={dataUrl} />
-                    </LazyLoad>;
-        // }
+        return <LazyLoad>
+                    <img className="image" onError={this.imgError.bind(this)} ref="img" src={preview} />
+                </LazyLoad>;
     }
 
     renderIcon()
     {
-        if (this.props.mimetype.indexOf("video") !== -1)
+        if (this.props.type.indexOf("video") !== -1)
         {
             return <i className="fa fa-file-video-o"></i>;
         }
@@ -182,16 +166,14 @@ class FileListItem extends Component
 }
 
 FileListItem.propTypes = {
-    fid: PropTypes.string.isRequired,
-    hash: PropTypes.string.isRequired,
+    fid: PropTypes.number.isRequired,
     dataUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    mimetype: PropTypes.string.isRequired,
-    selectableKey: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    selectableKey: PropTypes.number.isRequired,
     selectedKeys: PropTypes.array.isRequired,
     style: PropTypes.object.isRequired,
     methods: PropTypes.object.isRequired,
-    add: PropTypes.string,
     preview: PropTypes.string
 };
 

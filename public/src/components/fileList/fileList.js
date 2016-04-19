@@ -7,7 +7,7 @@ import { SelectableGroup, createSelectable } from '../react-selectable/index';
 import FileListItem from './fileListItem';
 import FileListItemMenu from './fileListItemMenu';
 import * as fileActions from '../../actions/file';
-import { on, off } from '../../utils/event';
+import { addEventListener, removeEventListener } from '../../utils/event';
 
 const SelectableFileListItem = createSelectable(FileListItem);
 
@@ -39,20 +39,12 @@ class FileList extends Component
         };
     }
 
-    componentWillMount()
-    {
-        let { fileListGet } = this.props.actions.fileActions;
-        fileListGet((err, filesLength) => {
-
-        });
-    }
-
     componentDidMount()
     {
         this.load = false;
 
         //判斷捲軸到底, 取得下份檔案清單
-        // on(window, 'scroll', this.fileListAppend.bind(this));
+        // addEventListener(window, 'scroll', this.fileListAppend.bind(this));
     }
 
     fileListAppend()
@@ -80,7 +72,7 @@ class FileList extends Component
                 else
                 {
                     // 沒資料了, 清除scroll事件
-                    off(window, 'scroll');
+                    removeEventListener(window, 'scroll');
                 }
             });
         }
@@ -150,12 +142,6 @@ class FileList extends Component
         fileItemSelect(selectedKeys);
     }
 
-
-    parentMouseDownDrag()
-    {
-        console.log(this.state.selectedKeys);
-    }
-
     // 右鍵選單 => 呈現
     parentContextMenu(data)
     {
@@ -206,12 +192,11 @@ class FileList extends Component
     renderItem()
     {
         let items = null;
-        let { fileContextMenuToggle, fileItemSelect } = this.props.actions.fileActions;
         if(this.props.data.length > 0)
         {
             let items = this.props.data.map((data, key) => {
                 return <SelectableFileListItem
-                            methods={{parentMouseDownDrag: this.parentMouseDownDrag.bind(this), parentContextMenu: this.parentContextMenu.bind(this), parentItemSelect:this.parentItemSelect.bind(this)}}
+                            methods={{parentContextMenu: this.parentContextMenu.bind(this), parentItemSelect:this.parentItemSelect.bind(this)}}
                             key={data.fid}
                             selectableKey={data.fid}
                             selectedKeys={this.state.selectedKeys}

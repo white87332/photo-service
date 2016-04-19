@@ -15,16 +15,6 @@ module.exports = {
         filename: '/asset/js/bundle/bundle.min.js',
         chunkFilename: "/asset/js/bundle/chunk.[name].min.js"
     },
-    // devtool: "source-map",
-    // resolve:
-    // {
-    //     alias:
-    //     {
-    //         jqueryLazyload: './public/asset/js/jquery/jquery.lazyload.min.js',
-    //         i18Next: './public/asset/js/i18Next/i18Next.min.js'
-    //     },
-    //     "extensions": ["", ".js", ".jsx"]
-    // },
     module:
     {
         loaders: [
@@ -52,7 +42,6 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }}),
-        // new webpack.optimize.CommonsChunkPlugin('vendors', 'asset/js/vendors.min.js'),
         new ExtractTextPlugin('./asset/css/bundle/bundle.min.css', { allChunks: true }),
         new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' })
     ]

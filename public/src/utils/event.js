@@ -1,4 +1,4 @@
-export function on(el, eventName, callback)
+export function addEventListener(el, eventName, callback)
 {
     if (el.addEventListener)
     {
@@ -13,7 +13,7 @@ export function on(el, eventName, callback)
     }
 }
 
-export function off(el, eventName, callback)
+export function removeEventListener(el, eventName, callback)
 {
     if (el.removeEventListener)
     {

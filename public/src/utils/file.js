@@ -1,4 +1,3 @@
-import Exif from 'exif-js';
 import { edgeCheck, ieCheck, safariCheck } from './browser';
 
 // imageAndVideoArrayGet
@@ -21,28 +20,6 @@ export function imageAndVideoArrayGet(files)
         newFiles,
         illegalFiles
     };
-}
-
-// exifAdd
-export function exifAdd(files, callback)
-{
-    let number = 0;
-    let total = files.length;
-    for (let key in files)
-    {
-        key = parseInt(key);
-        (function(key)
-        {
-            Exif.getData(files[key], () =>
-            {
-                number++;
-                if (total === number)
-                {
-                    callback(null);
-                }
-            });
-        })(key);
-    }
 }
 
 // imageThumbnail

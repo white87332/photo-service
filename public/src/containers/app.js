@@ -22,13 +22,10 @@ const loadComponentAsync = bundle => (location, callback) =>
 const routes = (
 	<Router history={history}>
 		<Route getComponent={loadComponentAsync(require('bundle?lazy&name=main!../components/main/main'))} >
-			<Route path="/photo/login" getComponent={loadComponentAsync(require('bundle?lazy&name=login!../components/login/login'))} />
-
 			<Route getComponent={loadComponentAsync(require('bundle?lazy&name=layout!../components/layout/layout'))}>
-				<Route path="/photo/fileList" getComponent={loadComponentAsync(require('bundle?lazy&name=fileList!../components/fileList/fileList'))} />
+				<Route path="/fileList" getComponent={loadComponentAsync(require('bundle?lazy&name=fileList!../components/fileList/fileList'))} />
 			</Route>
-
-			<Route path="/photo/*" getComponent={loadComponentAsync(require('bundle?lazy&name=login!../components/login/login'))} />
+			<Route path="/*" getComponent={loadComponentAsync(require('bundle?lazy&name=fileList!../components/fileList/fileList'))} />
 		</Route>
     </Router>
 );

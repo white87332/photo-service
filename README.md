@@ -1,4 +1,4 @@
-# react-redux
+# react-photo
 
 This is a photo prototype, use react, redux, react-router, webpack, babel6
 

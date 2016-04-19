@@ -1,11 +1,7 @@
 // ERR
 export const ERR_MESSAGE = 'ERR_MESSAGE';
 
-// USER
-export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
-
 // FILE
-export const FILE_LIST_GET = 'FILE_LIST_GET';
 export const FILE_LIST_ADD = 'FILE_LIST_ADD';
 export const FILE_LIST_DEL = 'FILE_LIST_DEL';
 export const FILE_LIST_ITEM_SELECT = 'FILE_LIST_ITEM_SELECT';

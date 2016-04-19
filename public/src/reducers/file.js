@@ -1,7 +1,6 @@
 import objectAssign from 'object-assign';
 import _ from 'lodash';
 import * as types from '../constants/actionTypes';
-import { URL_FILE } from '../constants/constants';
 
 const itemStyle = { backgroundColor: "rgba(0, 0, 0, 0)" };
 const nameStyle = { backgroundColor: "rgba(0, 0, 0, 0)", color: "#000" };
@@ -18,33 +17,15 @@ const initialState = {
     }
 };
 
-export default function posts(state = initialState, action = {})
+export default function file(state = initialState, action = {})
 {
     switch (action.type)
     {
-        // 檔案清單
-        case types.FILE_LIST_GET:
-            for (let key in action.data)
-            {
-                delete action.data[key].size;
-                action.data[key].dataUrl = URL_FILE + action.data[key].fid;
-                action.data[key].style = { itemStyle: itemStyle, nameStyle: nameStyle};
-            }
-
-            let oldData = _.clone(state.data);
-            return objectAssign({}, state, { data: oldData.concat(action.data) });
-
         // 上傳檔案 => 新增
         case types.FILE_LIST_ADD:
             let fileData = action.data;
-            fileData.act = 'add';
             fileData.style = { itemStyle: itemStyle, nameStyle: nameStyle };
-            delete fileData.duplicate;
-            delete fileData.encFile;
-            delete fileData.encShard;
-            delete fileData.sliceCount;
-            delete fileData.sliceSize;
-            delete fileData.size;
+            fileData.fid = new Date().getTime();
             return objectAssign({}, state, {data: [fileData, ...state.data]});
 
         // 刪除檔案
