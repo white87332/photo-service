@@ -1,4 +1,4 @@
-# react-photo
+# photo-service
 
 This is a photo-service, use react, redux, react-router, webpack, babel6
 
